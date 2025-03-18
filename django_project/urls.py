@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',blog_views.home , name = 'blog-home'),
     path('about/',blog_views.about , name = 'blog-about'),
+    path('profile/',user_views.profile , name = 'profile'),
     path('register/',user_views.register , name = 'register'),
     path('login/', auth_views.LoginView.as_view(template_name = 'users/login.html') , name = 'login'),
     path('logout/', custom_logout, name='logout'),
