@@ -21,7 +21,8 @@ from users import views as user_views
 from blog import views as blog_views 
 from django.contrib.auth import logout
 from django.shortcuts import render
-
+from django.conf import settings
+from django.conf.urls.static import static
 def custom_logout(request):
     logout(request)  # Logs out the user
     return render(request, 'users/logout.html')  # Show logout.html
@@ -37,3 +38,5 @@ urlpatterns = [
     path('logout/', custom_logout, name='logout'),
     path('', include('blog.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
