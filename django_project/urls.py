@@ -23,14 +23,16 @@ from django.contrib.auth import logout
 from django.shortcuts import render
 from django.conf import settings
 from django.conf.urls.static import static
+from blog.views import PostListView
 def custom_logout(request):
     logout(request)  # Logs out the user
     return render(request, 'users/logout.html')  # Show logout.html
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',blog_views.home , name = 'blog-home'),
+    path('', PostListView.as_view(), name='blog-home'),
     path('about/',blog_views.about , name = 'blog-about'),
     path('profile/',user_views.profile , name = 'profile'),
     path('register/',user_views.register , name = 'register'),
